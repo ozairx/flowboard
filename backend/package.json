@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "jest",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
@@ -41,6 +41,7 @@
     "prettier": "^3.6.2",
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.5",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3"
   }
 }
