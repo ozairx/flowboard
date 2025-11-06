@@ -8,9 +8,9 @@
 ---
 
 ## 🧩 Backend (Node.js + Express + PostgreSQL)
-- [ ] Iniciar projeto Node (`npm init`)
-- [ ] Instalar dependências: express, cors, jsonwebtoken, bcrypt, prisma, socket.io
-- [ ] Configurar Prisma + conexão com PostgreSQL (RDS)
+- [x] Iniciar projeto Node (`npm init`)
+- [x] Instalar dependências: express, cors, jsonwebtoken, bcrypt, prisma, socket.io
+- [x] Configurar Prisma + conexão com PostgreSQL (RDS)
 - [ ] Criar entidades e schemas:
   - [ ] User
   - [ ] Board
