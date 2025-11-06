@@ -1,9 +1,9 @@
 # 🗂️ TODO: Projeto Trello-like (Full Stack Next.js + Node.js + AWS Free Tier)
 
 ## 📦 Estrutura Inicial
-- [ ] Criar repositório Git (monorepo ou pasta separada /frontend e /backend)
-- [ ] Configurar `.editorconfig`, `.gitignore`, `README.md`, `LICENSE`
-- [ ] Adicionar ESLint, Prettier, Husky (pré-commit lint)
+- [x] Criar repositório Git (monorepo ou pasta separada /frontend e /backend)
+- [x] Configurar `.editorconfig`, `.gitignore`, `README.md`, `LICENSE`
+- [x] Adicionar ESLint, Prettier, Husky (pré-commit lint)
 
 ---
 
