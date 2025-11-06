@@ -11,11 +11,11 @@
 - [x] Iniciar projeto Node (`npm init`)
 - [x] Instalar dependências: express, cors, jsonwebtoken, bcrypt, prisma, socket.io
 - [x] Configurar Prisma + conexão com PostgreSQL (RDS)
-- [ ] Criar entidades e schemas:
-  - [ ] User
-  - [ ] Board
-  - [ ] List
-  - [ ] Card
+- [x] Criar entidades e schemas:
+  - [x] User
+  - [x] Board
+  - [x] List
+  - [x] Card
 - [ ] Implementar autenticação (JWT + middleware)
 - [ ] Rotas REST:
   - [ ] POST /auth/register
