@@ -23,7 +23,7 @@
   - [x] GET /boards
   - [x] POST /boards
   - [x] PATCH /boards/:id
-  - [ ] CRUD completo para lists e cards
+  - [x] CRUD completo para lists e cards
 - [ ] Configurar Socket.IO para atualização em tempo real (drag & drop)
 - [ ] Adicionar testes Jest (unit + integração)
 - [ ] Criar Dockerfile e docker-compose (backend + db local)
