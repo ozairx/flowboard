@@ -1,0 +1,34 @@
+@import ./auth.http
+
+### Create a new board
+# @name createBoard
+POST {{baseUrl}}/boards
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "My First Board"
+}
+
+@boardId = {{createBoard.response.body.id}}
+
+### Get all boards
+GET {{baseUrl}}/boards
+Authorization: Bearer {{token}}
+
+### Get a board by ID
+GET {{baseUrl}}/boards/{{boardId}}
+Authorization: Bearer {{token}}
+
+### Update a board
+PATCH {{baseUrl}}/boards/{{boardId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "My Updated Board"
+}
+
+### Delete a board
+DELETE {{baseUrl}}/boards/{{boardId}}
+Authorization: Bearer {{token}}

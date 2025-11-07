@@ -1,0 +1,39 @@
+@import ./boards.http
+
+### Create a new list
+# @name createList
+POST {{baseUrl}}/boards/{{boardId}}/lists
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "To Do",
+  "order": 0
+}
+
+@listId = {{createList.response.body.id}}
+
+### Update a list
+PATCH {{baseUrl}}/boards/{{boardId}}/lists/{{listId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Doing",
+  "order": 0
+}
+
+### Reorder lists
+PATCH {{baseUrl}}/boards/{{boardId}}/lists/reorder
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "listUpdates": [
+    { "id": {{listId}}, "order": 1 }
+  ]
+}
+
+### Delete a list
+DELETE {{baseUrl}}/boards/{{boardId}}/lists/{{listId}}
+Authorization: Bearer {{token}}
