@@ -7,4 +7,5 @@ export default {
   moduleNameMapper: {
     '^../database/client$': '<rootDir>/tests/mocks/prisma.ts',
   },
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', '/tests/integration/'],
 };
