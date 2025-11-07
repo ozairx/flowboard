@@ -18,11 +18,11 @@
   - [x] Card
 - [x] Implementar autenticação (JWT + middleware)
 - [ ] Rotas REST:
-  - [ ] POST /auth/register
-  - [ ] POST /auth/login
-  - [ ] GET /boards
-  - [ ] POST /boards
-  - [ ] PATCH /boards/:id
+  - [x] POST /auth/register
+  - [x] POST /auth/login
+  - [x] GET /boards
+  - [x] POST /boards
+  - [x] PATCH /boards/:id
   - [ ] CRUD completo para lists e cards
 - [ ] Configurar Socket.IO para atualização em tempo real (drag & drop)
 - [ ] Adicionar testes Jest (unit + integração)
