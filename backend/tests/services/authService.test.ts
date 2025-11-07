@@ -20,6 +20,7 @@ describe('AuthService', () => {
       };
 
       prismaMock.user.create.mockResolvedValue(expectedUser);
+      (jwt.sign as jest.Mock) = jest.fn().mockReturnValue('mocked_token');
 
       const result = await authService.register(userData);
 
@@ -30,9 +31,9 @@ describe('AuthService', () => {
           password: hashedPassword,
         },
       });
-
+      expect(jwt.sign).toHaveBeenCalledWith({ id: expectedUser.id }, process.env.JWT_SECRET || 'your_default_secret', { expiresIn: '1d' });
       const { password, ...userWithoutPassword } = expectedUser;
-      expect(result).toEqual(userWithoutPassword);
+      expect(result).toEqual({ user: userWithoutPassword, token: 'mocked_token' });
     });
   });
 
