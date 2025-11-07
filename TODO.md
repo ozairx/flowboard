@@ -16,7 +16,7 @@
   - [x] Board
   - [x] List
   - [x] Card
-- [ ] Implementar autenticação (JWT + middleware)
+- [x] Implementar autenticação (JWT + middleware)
 - [ ] Rotas REST:
   - [ ] POST /auth/register
   - [ ] POST /auth/login
