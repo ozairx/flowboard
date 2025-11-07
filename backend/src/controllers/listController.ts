@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import listService from '../services/listService';
 
+import fs from 'fs';
+// ... other imports
+
 class ListController {
   async createList(req: Request, res: Response): Promise<Response> {
     try {
