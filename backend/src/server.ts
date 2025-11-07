@@ -25,6 +25,10 @@ app.use('/boards', boardRoutes);
 
 setupSocketIO(io);
 
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+export { app, server };
