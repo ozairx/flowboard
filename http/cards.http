@@ -1,0 +1,39 @@
+@import ./lists.http
+
+### Create a new card
+# @name createCard
+POST {{baseUrl}}/boards/{{boardId}}/lists/{{listId}}/cards
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "My first card",
+  "order": 0
+}
+
+@cardId = {{createCard.response.body.id}}
+
+### Update a card
+PATCH {{baseUrl}}/boards/{{boardId}}/lists/{{listId}}/cards/{{cardId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "My updated card",
+  "description": "This is an updated description."
+}
+
+### Reorder cards
+PATCH {{baseUrl}}/boards/{{boardId}}/lists/{{listId}}/cards/reorder
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "cardUpdates": [
+    { "id": {{cardId}}, "order": 1, "listId": {{listId}} }
+  ]
+}
+
+### Delete a card
+DELETE {{baseUrl}}/boards/{{boardId}}/lists/{{listId}}/cards/{{cardId}}
+Authorization: Bearer {{token}}
