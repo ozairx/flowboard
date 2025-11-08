@@ -25,7 +25,7 @@
   - [x] PATCH /boards/:id
   - [x] CRUD completo para lists e cards
 - [x] Configurar Socket.IO para atualização em tempo real (drag & drop)
-- [ ] Adicionar testes Jest (unit + integração)
+- [x] Adicionar testes Jest (unit + integração)
 - [ ] Criar Dockerfile e docker-compose (backend + db local)
 - [ ] Criar script de seed (usuário e board de exemplo)
 
