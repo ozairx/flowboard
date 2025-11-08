@@ -8,23 +8,24 @@ class CardService {
         title,
         listId,
         order,
-        description,
+        description: description || null,
       },
     });
     return card;
   }
 
   async updateCard(cardId: number, listId: number, title?: string, description?: string, order?: number): Promise<Card | null> {
+    const data: { title?: string; description?: string | null; order?: number } = {};
+    if (title !== undefined) data.title = title;
+    if (description !== undefined) data.description = description || null;
+    if (order !== undefined) data.order = order;
+
     const card = await prisma.card.update({
       where: {
         id: cardId,
         listId,
       },
-      data: {
-        title,
-        description,
-        order,
-      },
+      data,
     });
     return card;
   }
