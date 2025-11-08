@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import boardService from '../services/boardService.js';
+import boardService from '../services/boardService';
 
 class BoardController {
   async createBoard(req: Request, res: Response): Promise<Response> {
