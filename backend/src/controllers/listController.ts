@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import listService from '../services/listService';
+import listService from '../services/listService.js';
 
 import fs from 'fs';
 // ... other imports
