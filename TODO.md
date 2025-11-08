@@ -17,7 +17,7 @@
   - [x] List
   - [x] Card
 - [x] Implementar autenticação (JWT + middleware)
-- [ ] Rotas REST:
+- [x] Rotas REST:
   - [x] POST /auth/register
   - [x] POST /auth/login
   - [x] GET /boards
@@ -26,7 +26,7 @@
   - [x] CRUD completo para lists e cards
 - [x] Configurar Socket.IO para atualização em tempo real (drag & drop)
 - [x] Adicionar testes Jest (unit + integração)
-- [ ] Criar Dockerfile e docker-compose (backend + db local)
+- [x] Criar Dockerfile e docker-compose (backend + db local)
 - [ ] Criar script de seed (usuário e board de exemplo)
 
 ---
