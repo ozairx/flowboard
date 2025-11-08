@@ -27,7 +27,7 @@
 - [x] Configurar Socket.IO para atualização em tempo real (drag & drop)
 - [x] Adicionar testes Jest (unit + integração)
 - [x] Criar Dockerfile e docker-compose (backend + db local)
-- [ ] Criar script de seed (usuário e board de exemplo)
+- [x] Criar script de seed (usuário e board de exemplo)
 
 ---
 
