@@ -5,6 +5,9 @@ class CardController {
   async createCard(req: Request, res: Response): Promise<Response> {
     try {
       const { listId } = req.params;
+      if (!listId) {
+        return res.status(400).json({ message: 'List ID is required' });
+      }
       const { title, description, order } = req.body;
       const userId = req.user?.id; // Assuming user is authenticated
 
@@ -31,6 +34,9 @@ class CardController {
   async updateCard(req: Request, res: Response): Promise<Response> {
     try {
       const { cardId, listId } = req.params;
+      if (!cardId || !listId) {
+        return res.status(400).json({ message: 'Card ID and List ID are required' });
+      }
       const { title, description, order } = req.body;
       const userId = req.user?.id;
 
@@ -59,6 +65,9 @@ class CardController {
   async deleteCard(req: Request, res: Response): Promise<Response> {
     try {
       const { cardId, listId } = req.params;
+      if (!cardId || !listId) {
+        return res.status(400).json({ message: 'Card ID and List ID are required' });
+      }
       const userId = req.user?.id;
 
       if (!userId) {
@@ -86,6 +95,9 @@ class CardController {
   async reorderCards(req: Request, res: Response): Promise<Response> {
     try {
       const { listId } = req.params;
+      if (!listId) {
+        return res.status(400).json({ message: 'List ID is required' });
+      }
       const { cardUpdates } = req.body; // [{ id: number, order: number, listId: number }]
       const userId = req.user?.id;
 

@@ -8,6 +8,9 @@ class ListController {
   async createList(req: Request, res: Response): Promise<Response> {
     try {
       const { boardId } = req.params;
+      if (!boardId) {
+        return res.status(400).json({ message: 'Board ID is required' });
+      }
       const { title, order } = req.body;
       const userId = req.user?.id;
 
@@ -34,6 +37,9 @@ class ListController {
   async updateList(req: Request, res: Response): Promise<Response> {
     try {
       const { listId, boardId } = req.params;
+      if (!listId || !boardId) {
+        return res.status(400).json({ message: 'List ID and Board ID are required' });
+      }
       const { title, order } = req.body;
       const userId = req.user?.id;
 
@@ -66,6 +72,9 @@ class ListController {
   async deleteList(req: Request, res: Response): Promise<Response> {
     try {
       const { listId, boardId } = req.params;
+      if (!listId || !boardId) {
+        return res.status(400).json({ message: 'List ID and Board ID are required' });
+      }
       const userId = req.user?.id;
 
       if (!userId) {
@@ -93,6 +102,9 @@ class ListController {
   async reorderLists(req: Request, res: Response): Promise<Response> {
     try {
       const { boardId } = req.params;
+      if (!boardId) {
+        return res.status(400).json({ message: 'Board ID is required' });
+      }
       const { listUpdates } = req.body; // [{ id: number, order: number }]
       const userId = req.user?.id;
 
