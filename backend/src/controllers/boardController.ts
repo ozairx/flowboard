@@ -40,6 +40,9 @@ class BoardController {
   async getBoardById(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
+      if (!id) {
+        return res.status(400).json({ message: 'Board ID is required' });
+      }
       const userId = req.user?.id;
 
       if (!userId) {
@@ -66,6 +69,9 @@ class BoardController {
   async updateBoard(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
+      if (!id) {
+        return res.status(400).json({ message: 'Board ID is required' });
+      }
       const { title } = req.body;
       const userId = req.user?.id;
 
@@ -97,6 +103,9 @@ class BoardController {
   async deleteBoard(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
+      if (!id) {
+        return res.status(400).json({ message: 'Board ID is required' });
+      }
       const userId = req.user?.id;
 
       if (!userId) {
