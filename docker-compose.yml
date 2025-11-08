@@ -1,4 +1,16 @@
 services:
+  backend:
+    build: ./backend
+    container_name: flowboard-backend
+    ports:
+      - "4000:4000"
+    environment:
+      DATABASE_URL: postgresql://user:password@db:5432/flowboard
+      JWT_SECRET: your_default_secret
+    depends_on:
+      - db
+    restart: unless-stopped
+
   db:
     image: postgres:16-alpine
     container_name: flowboard-db
