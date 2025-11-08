@@ -1,4 +1,4 @@
-import prisma from '../database/client.js';
+import prisma from '../database/client';
 import { Board, User } from '@prisma/client';
 
 class BoardService {

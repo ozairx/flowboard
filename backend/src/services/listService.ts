@@ -1,4 +1,4 @@
-import prisma from '../database/client.js';
+import prisma from '../database/client';
 import { List } from '@prisma/client';
 
 class ListService {

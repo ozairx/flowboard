@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import prisma from '../database/client.js';
+import prisma from '../database/client';
 import { User } from '@prisma/client';
 
 class AuthService {
