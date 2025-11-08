@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import cardService from '../services/cardService';
+import cardService from '../services/cardService.js';
 
 class CardController {
   async createCard(req: Request, res: Response): Promise<Response> {
