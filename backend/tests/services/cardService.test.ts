@@ -36,7 +36,7 @@ describe('CardService', () => {
   describe('deleteCard', () => {
     it('should delete a card', async () => {
       const cardId = 1;
-      const card = { id: cardId, title: 'Test Card', listId, order: 0, createdAt: new Date(), updatedAt: new Date() };
+      const card = { id: cardId, title: 'Test Card', listId, order: 0, description: null, createdAt: new Date(), updatedAt: new Date() };
 
       prismaMock.card.delete.mockResolvedValue(card);
 

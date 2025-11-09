@@ -34,7 +34,13 @@ describe('List Endpoints', () => {
         userId: user.id,
       },
     });
-    board = { id: 1 }; // Assign a dummy board object for consistency
+            board = {
+      id: 1,
+      title: 'Board for Lists',
+      userId: user.id,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
   });
 
   afterAll(async () => {
