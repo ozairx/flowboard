@@ -34,7 +34,7 @@
 ## 🎨 Frontend (Next.js 14 + App Router + Tailwind)
 - [x] Criar app com `npx create-next-app@latest`
 - [x] Configurar TypeScript, Tailwind, Zustand
-- [ ] Estruturar pastas: `app/`, `components/`, `hooks/`, `store/`, `lib/`
+- [x] Estruturar pastas: `app/`, `components/`, `hooks/`, `store/`, `lib/`
 - [ ] Implementar autenticação com JWT (AuthContext ou Zustand)
 - [ ] Páginas:
   - [ ] `/login`
