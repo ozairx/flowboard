@@ -9,7 +9,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "commonjs",
     "target": "es6",
-    "types": ["node"],
+    "types": ["node", "jest"],
     "lib": ["es6", "es2018"],
     "moduleResolution": "node",
     // For nodejs:
@@ -44,6 +44,6 @@
     "allowJs": true,
     "noImplicitAny": true,
   },
-  "include": ["src/**/*.ts", "src/types/express.d.ts"],
-  "exclude": ["node_modules", "dist", "tests"],
+  "include": ["src/**/*.ts", "src/types/express.d.ts", "tests/**/*.ts"],
+  "exclude": ["node_modules", "dist"],
 }
