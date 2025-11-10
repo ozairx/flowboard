@@ -43,7 +43,7 @@
   - [x] `/board/[id]`
 - [x] Componentes:
   - [x] BoardCard, List, Card, Navbar, Sidebar, Modal
-- [ ] Implementar drag & drop com `@hello-pangea/dnd`
+- [x] Implementar drag & drop com `@hello-pangea/dnd`
 - [ ] Conectar com backend via Axios
 - [ ] Adicionar tema dark/light persistente (localStorage)
 - [ ] Testes com Playwright (fluxos principais)
