@@ -66,6 +66,16 @@ export default function LoginPage() {
           <p className="mt-4 text-center text-sm">
             Não tem uma conta? <a href="/register" className="text-blue-500 hover:underline">Cadastre-se</a>
           </p>
+          {process.env.NODE_ENV === 'development' && (
+            <div className="mt-4 text-center">
+              <Button variant="link" onClick={() => {
+                setEmail('seed-user@example.com');
+                setPassword('password123');
+              }}>
+                Preencher com dados de teste
+              </Button>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
