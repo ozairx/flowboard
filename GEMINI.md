@@ -85,3 +85,4 @@ npx playwright test
 1.  Use shadcn for frontend components.
 2.  Use the mcp shadcn server to help create and configure shadcn components.
 3.  When I say to do the next step, read the `@TODO.md` file and identify the next unconcluded step (not marked with x) and then implement that step. Do everything necessary to follow the description of that step and only that one, then stop and wait for me to validate. When I validate, I will mark in `@TODO.md` that it is concluded with an x and then commit. Then, I will tell you to proceed to the next step or correct any eventual error. Always follow this flow.
+4.  All user-facing texts must be in Portuguese.
