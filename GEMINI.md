@@ -79,3 +79,9 @@ npx playwright test
 -   **Backend Architecture**: The backend aims for a clean, modular structure, separating concerns into `controllers`, `services`, `routes`, etc.
 -   **Commits**: While not explicitly defined, a conventional commit style is recommended.
 -   **Environment Variables**: The backend uses a `.env` file for environment variables (see `README.md` for details). The frontend uses `NEXT_PUBLIC_` prefixes for public variables.
+
+## Gemini Instructions
+
+1.  Use shadcn for frontend components.
+2.  Use the mcp shadcn server to help create and configure shadcn components.
+3.  When I say to do the next step, read the `@TODO.md` file and identify the next unconcluded step (not marked with x) and then implement that step. Do everything necessary to follow the description of that step and only that one, then stop and wait for me to validate. When I validate, I will mark in `@TODO.md` that it is concluded with an x and then commit. Then, I will tell you to proceed to the next step or correct any eventual error. Always follow this flow.
