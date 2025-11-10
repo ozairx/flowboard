@@ -3,6 +3,7 @@ import { Fira_Code, Architects_Daughter } from "next/font/google";
 import localFont from "next/font/local";
 import "../styles/globals.css";
 import Navbar from "@/components/layout/Navbar";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const firaCode = Fira_Code({
   variable: "--font-fira-code",
@@ -37,12 +38,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-br" suppressHydrationWarning>
       <body
         className={`${firaCode.variable} ${architectsDaughter.variable} ${georgia.variable} antialiased`}
       >
-        <Navbar />
-        <main className="flex-grow">{children}</main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <main className="flex-grow">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
