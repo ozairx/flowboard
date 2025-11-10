@@ -5,6 +5,8 @@ import { useAuthStore } from '@/store/auth';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 
+import { ThemeToggle } from './ThemeToggle';
+
 export default function Navbar() {
   const { isAuthenticated, logout } = useAuthStore();
   const router = useRouter();
@@ -19,9 +21,12 @@ export default function Navbar() {
       <Link href="/dashboard">
         <h1 className="text-xl font-bold">Flowboard</h1>
       </Link>
-      {isAuthenticated && (
-        <Button variant="destructive" onClick={handleLogout}>Sair</Button>
-      )}
+      <div className="flex items-center space-x-4">
+        <ThemeToggle />
+        {isAuthenticated && (
+          <Button variant="destructive" onClick={handleLogout}>Sair</Button>
+        )}
+      </div>
     </nav>
   );
 }
