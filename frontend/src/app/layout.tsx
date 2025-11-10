@@ -1,15 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fira_Code, Architects_Daughter } from "next/font/google";
+import localFont from "next/font/local";
 import "../styles/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const firaCode = Fira_Code({
+  variable: "--font-fira-code",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const architectsDaughter = Architects_Daughter({
+  variable: "--font-architects-daughter",
   subsets: ["latin"],
+  weight: "400",
+});
+
+const georgia = localFont({
+  src: [
+    {
+      path: "../../public/fonts/georgia/georgia.woff",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-georgia",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${firaCode.variable} ${architectsDaughter.variable} ${georgia.variable} antialiased`}
       >
         {children}
       </body>
