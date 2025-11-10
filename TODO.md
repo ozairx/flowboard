@@ -41,8 +41,8 @@
   - [x] `/register`
   - [x] `/dashboard`
   - [x] `/board/[id]`
-- [ ] Componentes:
-  - [ ] BoardCard, List, Card, Navbar, Sidebar, Modal
+- [x] Componentes:
+  - [x] BoardCard, List, Card, Navbar, Sidebar, Modal
 - [ ] Implementar drag & drop com `@hello-pangea/dnd`
 - [ ] Conectar com backend via Axios
 - [ ] Adicionar tema dark/light persistente (localStorage)
