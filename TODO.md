@@ -36,11 +36,11 @@
 - [x] Configurar TypeScript, Tailwind, Zustand
 - [x] Estruturar pastas: `app/`, `components/`, `hooks/`, `store/`, `lib/`
 - [x] Implementar autenticação com JWT (AuthContext ou Zustand)
-- [ ] Páginas:
-  - [ ] `/login`
-  - [ ] `/register`
-  - [ ] `/dashboard`
-  - [ ] `/board/[id]`
+- [x] Páginas:
+  - [x] `/login`
+  - [x] `/register`
+  - [x] `/dashboard`
+  - [x] `/board/[id]`
 - [ ] Componentes:
   - [ ] BoardCard, List, Card, Navbar, Sidebar, Modal
 - [ ] Implementar drag & drop com `@hello-pangea/dnd`
