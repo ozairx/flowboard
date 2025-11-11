@@ -46,7 +46,7 @@
 - [x] Implementar drag & drop com `@hello-pangea/dnd`
 - [x] Conectar com backend via Axios
 - [x] Adicionar tema dark/light persistente (localStorage)
-- [ ] Testes com Playwright (fluxos principais)
+- [x] Testes com Playwright (fluxos principais)
 
 ---
 
