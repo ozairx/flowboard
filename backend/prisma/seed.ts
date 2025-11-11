@@ -14,10 +14,38 @@ async function main() {
     },
   });
 
-  await prisma.board.create({
+  const board = await prisma.board.create({
     data: {
       title: 'Seed Board',
       userId: user.id,
+      lists: {
+        create: [
+          {
+            title: 'To Do',
+            order: 0,
+            cards: {
+              create: [
+                { title: 'Task 1', order: 0 },
+                { title: 'Task 2', order: 1 },
+              ],
+            },
+          },
+          {
+            title: 'In Progress',
+            order: 1,
+            cards: {
+              create: [{ title: 'Task 3', order: 0 }],
+            },
+          },
+          {
+            title: 'Done',
+            order: 2,
+            cards: {
+              create: [{ title: 'Task 4', order: 0 }],
+            },
+          },
+        ],
+      },
     },
   });
 }
