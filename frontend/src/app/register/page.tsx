@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import authService from '@/services/authService';
+import { useAuthStore } from '@/store/auth';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -14,13 +15,15 @@ export default function RegisterPage() {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const login = useAuthStore((state) => state.login);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     try {
-      await authService.register({ name, email, password });
-      router.push('/login');
+      const response = await authService.register({ name, email, password });
+      login(response.token);
+      router.push('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Falha no cadastro');
     }

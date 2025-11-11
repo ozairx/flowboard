@@ -11,7 +11,14 @@ class AuthController {
       }
 
       const user = await authService.register({ email, password, name });
-      return res.status(201).json(user);
+
+      const result = await authService.login({ email, password });
+
+      if (!result) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+
+      return res.status(201).json(result);
     } catch (error) {
       // Basic error handling, consider more specific checks (e.g., for unique constraint violation)
       return res.status(500).json({ message: 'User registration failed', error });
