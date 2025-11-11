@@ -1,6 +1,8 @@
 import Card from './Card';
 import { Card as ShadcnCard, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Droppable, Draggable } from '@hello-pangea/dnd';
+import { useSortable, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { useDroppable } from '@dnd-kit/core';
 
 interface ListProps {
   list: {
@@ -15,35 +17,28 @@ interface ListProps {
 }
 
 export default function List({ list }: ListProps) {
+  const { attributes, listeners, setNodeRef: setSortableNodeRef, transform, transition } = useSortable({ id: list.id });
+  const { setNodeRef: setDroppableNodeRef } = useDroppable({ id: list.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
   return (
-    <ShadcnCard className="w-[272px] mr-4 flex-shrink-0">
-      <CardHeader className="p-2">
-        <CardTitle className="text-base">{list.title}</CardTitle>
-      </CardHeader>
-      <Droppable droppableId={list.id} type="card">
-        {(provided) => (
-          <CardContent
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            className="p-2"
-          >
-            {list.cards.map((card, index) => (
-              <Draggable key={card.id} draggableId={card.id} index={index}>
-                {(provided) => (
-                  <div
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    ref={provided.innerRef}
-                  >
-                    <Card card={card} />
-                  </div>
-                )}
-              </Draggable>
+    <div ref={setSortableNodeRef} style={style} {...attributes} {...listeners}>
+      <ShadcnCard data-testid={`list-${list.id}`} className="w-[272px] mr-4 flex-shrink-0">
+        <CardHeader className="p-2">
+          <CardTitle className="text-base">{list.title}</CardTitle>
+        </CardHeader>
+        <div ref={setDroppableNodeRef}>
+          <SortableContext items={list.cards.map(card => card.id)} strategy={verticalListSortingStrategy}>
+            {list.cards.map((card) => (
+              <Card key={card.id} card={card} />
             ))}
-            {provided.placeholder}
-          </CardContent>
-        )}
-      </Droppable>
-    </ShadcnCard>
+          </SortableContext>
+        </div>
+      </ShadcnCard>
+    </div>
   );
 }
