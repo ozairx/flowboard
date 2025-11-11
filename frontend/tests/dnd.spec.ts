@@ -15,14 +15,14 @@ test.describe('Drag and Drop', () => {
 
   test('should allow reordering of lists', async ({ page }) => {
     const lists = page.locator('[data-testid^="list-"]');
-    const initialOrder = await lists.allTextContents();
+    const initialOrder = await lists.locator('h3').allTextContents();
 
     const sourceList = lists.nth(0);
     const destinationList = lists.nth(1);
 
     await sourceList.dragTo(destinationList);
 
-    const finalOrder = await lists.allTextContents();
+    const finalOrder = await lists.locator('h3').allTextContents();
 
     expect(finalOrder[0]).toBe(initialOrder[1]);
     expect(finalOrder[1]).toBe(initialOrder[0]);
