@@ -15,6 +15,8 @@ test.describe('Registration Flow', () => {
     // Click the register button
     await page.click('button[type="submit"]');
 
+    await page.pause();
+
     // Wait for navigation to the dashboard
     await page.waitForURL('/dashboard');
 
