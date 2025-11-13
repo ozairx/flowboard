@@ -1,14 +1,18 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
-import AuthGuard from '@/components/auth/AuthGuard';
-import List from '@/components/board/List';
-import boardService from '@/services/boardService';
-import listService from '@/services/listService';
-import cardService from '@/services/cardService';
-import { DndContext, DragEndEvent, closestCorners } from '@dnd-kit/core';
-import { SortableContext, arrayMove, horizontalListSortingStrategy } from '@dnd-kit/sortable';
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import AuthGuard from "@/components/auth/AuthGuard";
+import List from "@/components/board/List";
+import boardService from "@/services/boardService";
+import listService from "@/services/listService";
+import cardService from "@/services/cardService";
+import { DndContext, DragEndEvent, closestCorners } from "@dnd-kit/core";
+import {
+  SortableContext,
+  arrayMove,
+  horizontalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 interface Card {
   id: string;
@@ -34,7 +38,7 @@ export default function BoardDetailPage() {
   const { id } = params;
   const [board, setBoard] = useState<Board | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (id) {
@@ -42,7 +46,7 @@ export default function BoardDetailPage() {
       const fetchBoard = async () => {
         try {
           const data = await boardService.getBoardById(id as string);
-          console.log('Board data:', data);
+          console.log("Board data:", data);
           // Ensure lists and cards are sorted by order
           data.lists.sort((a: List, b: List) => a.order - b.order);
           data.lists.forEach((list: List) => {
@@ -50,8 +54,8 @@ export default function BoardDetailPage() {
           });
           setBoard(data);
         } catch (err: any) {
-          console.error('Error fetching board:', err);
-          setError(err.response?.data?.message || 'Failed to fetch board');
+          console.error("Error fetching board:", err);
+          setError(err.response?.data?.message || "Failed to fetch board");
         } finally {
           setLoading(false);
         }
@@ -83,7 +87,7 @@ export default function BoardDetailPage() {
         try {
           listService.reorderLists(board.id, updatedLists);
         } catch (error) {
-          setError('Failed to reorder lists');
+          setError("Failed to reorder lists");
           // Revert state if API call fails
           // This would require a more complex state management or re-fetching the board
         }
@@ -105,7 +109,10 @@ export default function BoardDetailPage() {
           {board && (
             <div>
               <h1 className="text-2xl font-bold mb-4">{board.title}</h1>
-              <SortableContext items={board.lists.map(list => list.id)} strategy={horizontalListSortingStrategy}>
+              <SortableContext
+                items={board.lists.map((list) => list.id)}
+                strategy={horizontalListSortingStrategy}
+              >
                 <div className="flex overflow-x-auto">
                   {board.lists.map((list) => (
                     <List key={list.id} list={list} />

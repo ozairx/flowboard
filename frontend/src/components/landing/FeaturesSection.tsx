@@ -13,8 +13,8 @@ const FeaturesSection = () => {
               Funcionalidades para o sucesso
             </h2>
             <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Flowboard vem com um conjunto de funcionalidades para ajudar
-              você e sua equipe a se manterem organizados e produtivos.
+              Flowboard vem com um conjunto de funcionalidades para ajudar você
+              e sua equipe a se manterem organizados e produtivos.
             </p>
           </div>
         </div>
@@ -28,8 +28,8 @@ const FeaturesSection = () => {
             </CardHeader>
             <CardContent>
               <p>
-                Visualize tarefas, projetos e fluxos de trabalho com
-                quadros, listas e cartões fáceis de usar.
+                Visualize tarefas, projetos e fluxos de trabalho com quadros,
+                listas e cartões fáceis de usar.
               </p>
             </CardContent>
           </Card>
