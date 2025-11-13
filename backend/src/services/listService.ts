@@ -1,8 +1,12 @@
-import prisma from '../database/client';
-import { List } from '@prisma/client';
+import prisma from "../database/client";
+import { List } from "@prisma/client";
 
 class ListService {
-  async createList(title: string, boardId: number, order: number): Promise<List> {
+  async createList(
+    title: string,
+    boardId: number,
+    order: number,
+  ): Promise<List> {
     const list = await prisma.list.create({
       data: {
         title,
@@ -13,7 +17,12 @@ class ListService {
     return list;
   }
 
-  async updateList(listId: number, boardId: number, title: string, order: number): Promise<List | null> {
+  async updateList(
+    listId: number,
+    boardId: number,
+    title: string,
+    order: number,
+  ): Promise<List | null> {
     const list = await prisma.list.update({
       where: {
         id: listId,
@@ -44,12 +53,15 @@ class ListService {
     return list;
   }
 
-  async reorderLists(boardId: number, listUpdates: { id: number; order: number }[]): Promise<void> {
+  async reorderLists(
+    boardId: number,
+    listUpdates: { id: number; order: number }[],
+  ): Promise<void> {
     const transaction = listUpdates.map((list) =>
       prisma.list.update({
         where: { id: list.id, boardId },
         data: { order: list.order },
-      })
+      }),
     );
     await prisma.$transaction(transaction);
   }

@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
-import listService from '../services/listService';
+import { Request, Response } from "express";
+import listService from "../services/listService";
 
-import fs from 'fs';
+import fs from "fs";
 // ... other imports
 
 class ListController {
@@ -9,28 +9,30 @@ class ListController {
     try {
       const { boardId } = req.params;
       if (!boardId) {
-        return res.status(400).json({ message: 'Board ID is required' });
+        return res.status(400).json({ message: "Board ID is required" });
       }
       const { title, order } = req.body;
       const userId = req.user?.id;
 
       if (!userId) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.status(401).json({ message: "Unauthorized" });
       }
 
       if (!title || order === undefined) {
-        return res.status(400).json({ message: 'Title and order are required' });
+        return res
+          .status(400)
+          .json({ message: "Title and order are required" });
       }
 
       const boardIdNum = parseInt(boardId, 10);
       if (isNaN(boardIdNum)) {
-        return res.status(400).json({ message: 'Invalid board ID' });
+        return res.status(400).json({ message: "Invalid board ID" });
       }
 
       const list = await listService.createList(title, boardIdNum, order);
       return res.status(201).json(list);
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to create list', error });
+      return res.status(500).json({ message: "Failed to create list", error });
     }
   }
 
@@ -38,34 +40,45 @@ class ListController {
     try {
       const { listId, boardId } = req.params;
       if (!listId || !boardId) {
-        return res.status(400).json({ message: 'List ID and Board ID are required' });
+        return res
+          .status(400)
+          .json({ message: "List ID and Board ID are required" });
       }
       const { title, order } = req.body;
       const userId = req.user?.id;
 
       if (!userId) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.status(401).json({ message: "Unauthorized" });
       }
 
       const listIdNum = parseInt(listId, 10);
       const boardIdNum = parseInt(boardId, 10);
       if (isNaN(listIdNum) || isNaN(boardIdNum)) {
-        return res.status(400).json({ message: 'Invalid IDs' });
+        return res.status(400).json({ message: "Invalid IDs" });
       }
 
       if (!title || order === undefined) {
-        return res.status(400).json({ message: 'Title and order are required' });
+        return res
+          .status(400)
+          .json({ message: "Title and order are required" });
       }
 
-      const updatedList = await listService.updateList(listIdNum, boardIdNum, title, order);
+      const updatedList = await listService.updateList(
+        listIdNum,
+        boardIdNum,
+        title,
+        order,
+      );
 
       if (!updatedList) {
-        return res.status(404).json({ message: 'List not found or unauthorized' });
+        return res
+          .status(404)
+          .json({ message: "List not found or unauthorized" });
       }
 
       return res.status(200).json(updatedList);
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to update list', error });
+      return res.status(500).json({ message: "Failed to update list", error });
     }
   }
 
@@ -73,29 +86,33 @@ class ListController {
     try {
       const { listId, boardId } = req.params;
       if (!listId || !boardId) {
-        return res.status(400).json({ message: 'List ID and Board ID are required' });
+        return res
+          .status(400)
+          .json({ message: "List ID and Board ID are required" });
       }
       const userId = req.user?.id;
 
       if (!userId) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.status(401).json({ message: "Unauthorized" });
       }
 
       const listIdNum = parseInt(listId, 10);
       const boardIdNum = parseInt(boardId, 10);
       if (isNaN(listIdNum) || isNaN(boardIdNum)) {
-        return res.status(400).json({ message: 'Invalid IDs' });
+        return res.status(400).json({ message: "Invalid IDs" });
       }
 
       const deletedList = await listService.deleteList(listIdNum, boardIdNum);
 
       if (!deletedList) {
-        return res.status(404).json({ message: 'List not found or unauthorized' });
+        return res
+          .status(404)
+          .json({ message: "List not found or unauthorized" });
       }
 
       return res.status(204).send();
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to delete list', error });
+      return res.status(500).json({ message: "Failed to delete list", error });
     }
   }
 
@@ -103,28 +120,32 @@ class ListController {
     try {
       const { boardId } = req.params;
       if (!boardId) {
-        return res.status(400).json({ message: 'Board ID is required' });
+        return res.status(400).json({ message: "Board ID is required" });
       }
       const { listUpdates } = req.body; // [{ id: number, order: number }]
       const userId = req.user?.id;
 
       if (!userId) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.status(401).json({ message: "Unauthorized" });
       }
 
       const boardIdNum = parseInt(boardId, 10);
       if (isNaN(boardIdNum)) {
-        return res.status(400).json({ message: 'Invalid board ID' });
+        return res.status(400).json({ message: "Invalid board ID" });
       }
 
       if (!Array.isArray(listUpdates)) {
-        return res.status(400).json({ message: 'listUpdates must be an array' });
+        return res
+          .status(400)
+          .json({ message: "listUpdates must be an array" });
       }
 
       await listService.reorderLists(boardIdNum, listUpdates);
-      return res.status(200).json({ message: 'Lists reordered successfully' });
+      return res.status(200).json({ message: "Lists reordered successfully" });
     } catch (error) {
-      return res.status(500).json({ message: 'Failed to reorder lists', error });
+      return res
+        .status(500)
+        .json({ message: "Failed to reorder lists", error });
     }
   }
 }

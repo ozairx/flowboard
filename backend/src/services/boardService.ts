@@ -1,5 +1,5 @@
-import prisma from '../database/client';
-import { Board, User } from '@prisma/client';
+import prisma from "../database/client";
+import { Board, User } from "@prisma/client";
 
 class BoardService {
   async createBoard(title: string, userId: number): Promise<Board> {
@@ -18,7 +18,7 @@ class BoardService {
         userId,
       },
       orderBy: {
-        createdAt: 'asc',
+        createdAt: "asc",
       },
     });
     return boards;
@@ -35,12 +35,12 @@ class BoardService {
           include: {
             cards: {
               orderBy: {
-                order: 'asc',
+                order: "asc",
               },
             },
           },
           orderBy: {
-            order: 'asc',
+            order: "asc",
           },
         },
       },
@@ -48,7 +48,11 @@ class BoardService {
     return board;
   }
 
-  async updateBoard(boardId: number, userId: number, title: string): Promise<Board | null> {
+  async updateBoard(
+    boardId: number,
+    userId: number,
+    title: string,
+  ): Promise<Board | null> {
     const board = await prisma.board.update({
       where: {
         id: boardId,

@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import authService from '../services/authService';
+import { Request, Response } from "express";
+import authService from "../services/authService";
 
 class AuthController {
   async register(req: Request, res: Response): Promise<Response> {
@@ -7,7 +7,9 @@ class AuthController {
       const { email, password, name } = req.body;
 
       if (!email || !password) {
-        return res.status(400).json({ message: 'Email and password are required' });
+        return res
+          .status(400)
+          .json({ message: "Email and password are required" });
       }
 
       const user = await authService.register({ email, password, name });
@@ -15,13 +17,15 @@ class AuthController {
       const result = await authService.login({ email, password });
 
       if (!result) {
-        return res.status(401).json({ message: 'Invalid credentials' });
+        return res.status(401).json({ message: "Invalid credentials" });
       }
 
       return res.status(201).json(result);
     } catch (error) {
       // Basic error handling, consider more specific checks (e.g., for unique constraint violation)
-      return res.status(500).json({ message: 'User registration failed', error });
+      return res
+        .status(500)
+        .json({ message: "User registration failed", error });
     }
   }
 
@@ -30,18 +34,20 @@ class AuthController {
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return res.status(400).json({ message: 'Email and password are required' });
+        return res
+          .status(400)
+          .json({ message: "Email and password are required" });
       }
 
       const result = await authService.login({ email, password });
 
       if (!result) {
-        return res.status(401).json({ message: 'Invalid credentials' });
+        return res.status(401).json({ message: "Invalid credentials" });
       }
 
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json({ message: 'Login failed', error });
+      return res.status(500).json({ message: "Login failed", error });
     }
   }
 }
