@@ -48,9 +48,9 @@ const HeroSection = () => {
             }}
             className="relative z-10 mx-auto max-w-xl py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400"
           >
-            Flowboard é a ferramenta visual que permite que sua equipe
-            gerencie qualquer tipo de projeto, fluxo de trabalho ou
-            monitoramento de tarefas.
+            Flowboard é a ferramenta visual que permite que sua equipe gerencie
+            qualquer tipo de projeto, fluxo de trabalho ou monitoramento de
+            tarefas.
           </motion.p>
           <motion.div
             initial={{

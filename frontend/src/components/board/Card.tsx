@@ -1,6 +1,6 @@
-import { Card as ShadcnCard, CardContent } from '@/components/ui/card';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { Card as ShadcnCard, CardContent } from "@/components/ui/card";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface CardProps {
   card: {
@@ -10,7 +10,8 @@ interface CardProps {
 }
 
 export default function Card({ card }: CardProps) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: card.id });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: card.id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -18,7 +19,13 @@ export default function Card({ card }: CardProps) {
   };
 
   return (
-    <ShadcnCard ref={setNodeRef} style={style} {...attributes} {...listeners} className="mb-2">
+    <ShadcnCard
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="mb-2"
+    >
       <CardContent className="p-2">
         <p>{card.title}</p>
       </CardContent>

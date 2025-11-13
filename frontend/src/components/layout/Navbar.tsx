@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useAuthStore } from '@/store/auth';
-import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import { useAuthStore } from "@/store/auth";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-import { ThemeToggle } from './ThemeToggle';
+import { ThemeToggle } from "./ThemeToggle";
 
 export default function Navbar() {
   const { isAuthenticated, logout } = useAuthStore();
@@ -13,7 +13,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout();
-    router.push('/login');
+    router.push("/login");
   };
 
   return (
@@ -24,7 +24,9 @@ export default function Navbar() {
       <div className="flex items-center space-x-4">
         <ThemeToggle />
         {isAuthenticated && (
-          <Button variant="destructive" onClick={handleLogout}>Sair</Button>
+          <Button variant="destructive" onClick={handleLogout}>
+            Sair
+          </Button>
         )}
       </div>
     </nav>
