@@ -10,7 +10,7 @@ const LandingPageHeader = () => {
         <Link href="/" className="flex items-center justify-center">
           <span className="text-xl font-bold">Flowboard</span>
         </Link>
-        <nav className="flex gap-4 sm:gap-6">
+        <nav className="flex items-center gap-4 sm:gap-6">
           <Link
             href="/login"
             className="text-sm font-medium hover:underline underline-offset-4"
