@@ -10,9 +10,10 @@
     "test": "jest",
     "test:integration": "jest --config jest.integration.config.js",
     "lint": "eslint .",
-    "migrate": "npx prisma migrate dev",
+    "migrate": "prisma migrate dev",
     "typecheck": "tsc --noEmit",
-    "seed": "npx prisma db seed"
+    "seed": "prisma db seed",
+    "format": "prettier --write src"
   },
   "prisma": {
     "seed": "ts-node-dev prisma/seed.ts"
