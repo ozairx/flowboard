@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import FeaturesSection from '@/components/landing/FeaturesSection';
-import HeroSection from '@/components/landing/HeroSection';
-import LandingPageFooter from '@/components/landing/LandingPageFooter';
-import LandingPageHeader from '@/components/landing/LandingPageHeader';
+import FeaturesSection from "@/components/landing/FeaturesSection";
+import HeroSection from "@/components/landing/HeroSection";
+import LandingPageFooter from "@/components/landing/LandingPageFooter";
+import LandingPageHeader from "@/components/landing/LandingPageHeader";
 
 const LandingPage = () => {
   return (
