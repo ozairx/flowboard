@@ -57,9 +57,9 @@ export function AuthPage() {
   };
 
   return (
-    <div className="flex min-h-screen w-full flex-col lg:flex-row">
+    <div className="flex min-h-screen w-full flex-col lg:flex-row justify-center">
       {/* Left Panel - Decorative */}
-      <div className="relative flex w-full flex-col justify-between overflow-hidden bg-primary p-8 text-primary-foreground lg:w-1/2 lg:p-12">
+      <div className="relative hidden lg:flex w-full flex-col justify-between overflow-hidden bg-primary p-8 text-primary-foreground lg:w-1/2 lg:p-12">
         {/* Abstract Background Shapes */}
         <div className="absolute inset-0 z-0">
           <div className="absolute -left-20 -top-20 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
