@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const LandingPageHeader = () => {
   return (
     <header className="px-4 lg:px-6 h-14 flex items-center bg-white dark:bg-gray-950 shadow-sm">
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto mt-auto flex items-center justify-between">
         <Link href="/" className="flex items-center justify-center">
           <span className="text-xl font-bold">Flowboard</span>
         </Link>

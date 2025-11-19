@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CheckCircle } from 'lucide-react';
 
 const FeaturesSection = () => {
   return (
@@ -12,7 +12,7 @@ const FeaturesSection = () => {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
               Funcionalidades para o sucesso
             </h2>
-            <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 pt-4">
               Flowboard vem com um conjunto de funcionalidades para ajudar você
               e sua equipe a se manterem organizados e produtivos.
             </p>

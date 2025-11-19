@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { motion } from "motion/react";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { motion } from 'motion/react';
 
 const HeroSection = () => {
   return (
@@ -17,17 +17,17 @@ const HeroSection = () => {
       <div className="container px-4 md:px-6 m-auto">
         <div className="flex flex-col items-center space-y-4 text-center">
           <h1 className="relative z-10 mx-auto max-w-4xl text-2xl font-bold text-slate-700 md:text-4xl lg:text-7xl dark:text-slate-300">
-            {"Organize seu trabalho, sua vida e tudo mais."
-              .split(" ")
+            {'Organize seu trabalho, sua vida e tudo mais.'
+              .split(' ')
               .map((word, index) => (
                 <motion.span
                   key={index}
-                  initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
-                  animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                  initial={{ opacity: 0, filter: 'blur(4px)', y: 10 }}
+                  animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
                   transition={{
                     duration: 0.3,
                     delay: index * 0.1,
-                    ease: "easeInOut",
+                    ease: 'easeInOut',
                   }}
                   className="mr-2 inline-block"
                 >
@@ -46,7 +46,7 @@ const HeroSection = () => {
               duration: 0.3,
               delay: 0.8,
             }}
-            className="relative z-10 mx-auto max-w-xl py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400"
+            className="relative z-10 mx-auto max-w-xl py-4 text-center text-xl font-normal text-neutral-600 dark:text-neutral-400"
           >
             Flowboard é a ferramenta visual que permite que sua equipe gerencie
             qualquer tipo de projeto, fluxo de trabalho ou monitoramento de
@@ -63,10 +63,10 @@ const HeroSection = () => {
               duration: 0.3,
               delay: 1,
             }}
-            className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
+            className="relative z-10 mt-4 flex flex-wrap items-center justify-center gap-4"
           >
             <Button asChild size="lg">
-              <Link href="/register">Comece agora - É grátis</Link>
+              <Link href="/register" className='text-xl'>Comece agora - É grátis</Link>
             </Button>
           </motion.div>
           <motion.div
