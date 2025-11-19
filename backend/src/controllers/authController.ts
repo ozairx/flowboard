@@ -12,9 +12,7 @@ class AuthController {
           .json({ message: "Email and password are required" });
       }
 
-      const user = await authService.register({ email, password, name });
-
-      const result = await authService.login({ email, password });
+      const result = await authService.register({ email, password, name });
 
       if (!result) {
         return res.status(401).json({ message: "Invalid credentials" });
