@@ -165,7 +165,7 @@ export function AuthPage() {
                       <div className="flex justify-end">
                         <a
                           href="#"
-                          className="text-sm font-medium text-primary hover:underline"
+                          className="text-xs font-medium text-primary hover:underline"
                         >
                           Esqueceu sua senha?
                         </a>
@@ -175,6 +175,20 @@ export function AuthPage() {
                     <Button type="submit" className="w-full text-base">
                       Entrar
                     </Button>
+                    {process.env.NODE_ENV === 'development' && (
+                      <div className="text-center">
+                        <Button
+                          className="cursor-pointer"
+                          variant="link"
+                          onClick={() => {
+                            setEmail('seed-user@example.com');
+                            setPassword('password123');
+                          }}
+                        >
+                          Preencher com dados de teste
+                        </Button>
+                      </div>
+                    )}
                   </form>
                 </motion.div>
               ) : (
