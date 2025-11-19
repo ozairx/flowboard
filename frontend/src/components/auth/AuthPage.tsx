@@ -1,8 +1,8 @@
 
 "use client"
 
-import { useState } from "react"
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from "react"
+import { useRouter, useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -12,7 +12,9 @@ import authService from '@/services/authService'
 import { useAuthStore } from '@/store/auth'
 
 export function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true)
+  const searchParams = useSearchParams();
+  const initialForm = searchParams.get('form');
+  const [isLogin, setIsLogin] = useState(initialForm !== 'register');
   const router = useRouter()
   const storeLogin = useAuthStore((state) => state.login)
 

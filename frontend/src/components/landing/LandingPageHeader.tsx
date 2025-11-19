@@ -18,7 +18,7 @@ const LandingPageHeader = () => {
             Entrar
           </Link>
           <Button asChild>
-            <Link href="/auth">Cadastre-se</Link>
+            <Link href="/auth?form=register">Cadastre-se</Link>
           </Button>
         </nav>
       </div>
