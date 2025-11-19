@@ -1,14 +1,58 @@
+
 "use client"
 
 import { useState } from "react"
+import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CheckCircle2, Layers, Layout, Zap } from 'lucide-react'
+import authService from '@/services/authService'
+import { useAuthStore } from '@/store/auth'
 
 export function AuthPage() {
   const [isLogin, setIsLogin] = useState(true)
+  const router = useRouter()
+  const storeLogin = useAuthStore((state) => state.login)
+
+  // Form states
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    try {
+      const response = await authService.login({ email, password });
+      storeLogin(response.token);
+      router.push('/dashboard');
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Falha no login');
+    }
+  };
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    try {
+      const response = await authService.register({ name, email, password });
+      storeLogin(response.token);
+      router.push('/dashboard');
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Falha no cadastro');
+    }
+  };
+
+  const toggleForm = () => {
+    setIsLogin(!isLogin);
+    setError('');
+    setName('');
+    setEmail('');
+    setPassword('');
+  }
 
   return (
     <div className="flex min-h-screen w-full flex-col lg:flex-row">
@@ -80,17 +124,18 @@ export function AuthPage() {
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative h-80"> 
             <AnimatePresence mode="wait">
               {isLogin ? (
                 <motion.div
                   key="login"
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: 0 }} 
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
+                  exit={{ opacity: 0, x: 0 }}
                   transition={{ duration: 0.3 }}
+                  className="absolute w-full"
                 >
-                  <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                  <form className="space-y-6" onSubmit={handleLogin}>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
                       <Input 
@@ -98,6 +143,8 @@ export function AuthPage() {
                         type="email" 
                         placeholder="seu@email.com" 
                         required 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="bg-input/50"
                       />
                     </div>
@@ -108,6 +155,8 @@ export function AuthPage() {
                         type="password" 
                         placeholder="Sua senha" 
                         required 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         className="bg-input/50"
                       />
                       <div className="flex justify-end">
@@ -116,6 +165,7 @@ export function AuthPage() {
                         </a>
                       </div>
                     </div>
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
                     <Button type="submit" className="w-full text-base">
                       Entrar
                     </Button>
@@ -124,12 +174,13 @@ export function AuthPage() {
               ) : (
                 <motion.div
                   key="register"
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: 0 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
+                  exit={{ opacity: 0, x: 0 }}
                   transition={{ duration: 0.3 }}
+                  className="absolute w-full"
                 >
-                  <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                  <form className="space-y-6" onSubmit={handleRegister}>
                     <div className="space-y-2">
                       <Label htmlFor="name">Nome</Label>
                       <Input 
@@ -137,6 +188,8 @@ export function AuthPage() {
                         type="text" 
                         placeholder="Seu nome completo" 
                         required 
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         className="bg-input/50"
                       />
                     </div>
@@ -147,6 +200,8 @@ export function AuthPage() {
                         type="email" 
                         placeholder="seu@email.com" 
                         required 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="bg-input/50"
                       />
                     </div>
@@ -157,9 +212,12 @@ export function AuthPage() {
                         type="password" 
                         placeholder="Crie uma senha forte" 
                         required 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         className="bg-input/50"
                       />
                     </div>
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
                     <Button type="submit" className="w-full text-base">
                       Criar conta grátis
                     </Button>
@@ -185,7 +243,7 @@ export function AuthPage() {
               <p>
                 Não tem uma conta?{" "}
                 <button
-                  onClick={() => setIsLogin(false)}
+                  onClick={toggleForm}
                   className="font-bold text-primary hover:underline focus:outline-none"
                 >
                   Cadastre-se
@@ -195,7 +253,7 @@ export function AuthPage() {
               <p>
                 Já tem uma conta?{" "}
                 <button
-                  onClick={() => setIsLogin(true)}
+                  onClick={toggleForm}
                   className="font-bold text-primary hover:underline focus:outline-none"
                 >
                   Entrar

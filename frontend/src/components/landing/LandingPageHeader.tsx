@@ -12,13 +12,13 @@ const LandingPageHeader = () => {
         </Link>
         <nav className="flex items-center gap-4 sm:gap-6">
           <Link
-            href="/login"
+            href="/auth"
             className="text-sm font-medium hover:underline underline-offset-4"
           >
             Entrar
           </Link>
           <Button asChild>
-            <Link href="/register">Cadastre-se</Link>
+            <Link href="/auth">Cadastre-se</Link>
           </Button>
         </nav>
       </div>
