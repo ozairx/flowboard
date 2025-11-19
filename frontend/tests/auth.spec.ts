@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Authentication', () => {
   test('should allow a user to log in and log out', async ({ page }) => {
     // Go to the login page
-    await page.goto('/login');
+    await page.goto('/auth');
     await page.waitForLoadState('networkidle');
 
     // Fill in the login form
@@ -11,7 +11,7 @@ test.describe('Authentication', () => {
     await page.fill('#password', 'password123');
 
     // Click the login button
-    await page.click('button[type="submit"]');
+    await page.click('button[type="submit"]:has-text("Entrar")');
 
     // Wait for navigation to the dashboard
     await page.waitForURL('/dashboard');
@@ -23,7 +23,7 @@ test.describe('Authentication', () => {
     await page.click('button:has-text("Sair")');
 
     // Wait for navigation back to the login page
-    await page.waitForURL('/login');
+    await page.waitForURL('/auth');
 
     // Check if the login form is visible again
     await expect(page.locator('form')).toBeVisible();

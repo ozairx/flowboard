@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Drag and Drop', () => {
   test.beforeEach(async ({ page }) => {
     // Log in and navigate to the board page before each test
-    await page.goto('/login');
+    await page.goto('/auth');
     await page.waitForLoadState('networkidle');
     await page.fill('#email', 'seed-user@example.com');
     await page.fill('#password', 'password123');
