@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import authService from "@/services/authService";
-import { useAuthStore } from "@/store/auth";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import authService from '@/services/authService';
+import { useAuthStore } from '@/store/auth';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
     try {
       const response = await authService.login({ email, password });
       login(response.token);
-      router.push("/dashboard");
+      router.push('/dashboard');
     } catch (err: any) {
-      setError(err.response?.data?.message || "Falha no login");
+      setError(err.response?.data?.message || 'Falha no login');
     }
   };
 
@@ -60,25 +60,25 @@ export default function LoginPage() {
                 />
               </div>
               {error && <p className="text-red-500 text-sm">{error}</p>}
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full cursor-pointer">
                 Entrar
               </Button>
             </div>
           </form>
           <p className="mt-4 text-center text-sm">
-            Não tem uma conta?{" "}
+            Não tem uma conta?{' '}
             <a href="/register" className="text-blue-500 hover:underline">
               Cadastre-se
             </a>
           </p>
-          {process.env.NODE_ENV === "development" && (
+          {process.env.NODE_ENV === 'development' && (
             <div className="mt-4 text-center">
               <Button
                 className="cursor-pointer"
                 variant="link"
                 onClick={() => {
-                  setEmail("seed-user@example.com");
-                  setPassword("password123");
+                  setEmail('seed-user@example.com');
+                  setPassword('password123');
                 }}
               >
                 Preencher com dados de teste

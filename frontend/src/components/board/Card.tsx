@@ -1,6 +1,6 @@
-import { Card as ShadcnCard, CardContent } from "@/components/ui/card";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import { Card as ShadcnCard, CardContent } from '@/components/ui/card';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 interface CardProps {
   card: {

@@ -1,17 +1,17 @@
-import Card from "./Card";
+import Card from './Card';
 import {
   Card as ShadcnCard,
   CardHeader,
   CardTitle,
   CardContent,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   useSortable,
   SortableContext,
   verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { useDroppable } from "@dnd-kit/core";
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { useDroppable } from '@dnd-kit/core';
 
 interface ListProps {
   list: {

@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import authService from "@/services/authService";
-import { useAuthStore } from "@/store/auth";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import authService from '@/services/authService';
+import { useAuthStore } from '@/store/auth';
 
 export default function RegisterPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
     try {
       const response = await authService.register({ name, email, password });
       login(response.token);
-      router.push("/dashboard");
+      router.push('/dashboard');
     } catch (err: any) {
-      setError(err.response?.data?.message || "Falha no cadastro");
+      setError(err.response?.data?.message || 'Falha no cadastro');
     }
   };
 
@@ -72,13 +72,13 @@ export default function RegisterPage() {
                 />
               </div>
               {error && <p className="text-red-500 text-sm">{error}</p>}
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full cursor-pointer">
                 Cadastrar
               </Button>
             </div>
           </form>
           <p className="mt-4 text-center text-sm">
-            Já tem uma conta?{" "}
+            Já tem uma conta?{' '}
             <a href="/login" className="text-blue-500 hover:underline">
               Entrar
             </a>

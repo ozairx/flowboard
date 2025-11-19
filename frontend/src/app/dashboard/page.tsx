@@ -1,9 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import AuthGuard from "@/components/auth/AuthGuard";
-import BoardCard from "@/components/board/BoardCard";
-import boardService from "@/services/boardService";
+import { useEffect, useState } from 'react';
+import AuthGuard from '@/components/auth/AuthGuard';
+import BoardCard from '@/components/board/BoardCard';
+import boardService from '@/services/boardService';
+import Navbar from '@/components/layout/Navbar';
 
 interface Board {
   id: string;
@@ -13,7 +14,7 @@ interface Board {
 export default function DashboardPage() {
   const [boards, setBoards] = useState<Board[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchBoards = async () => {
@@ -21,7 +22,7 @@ export default function DashboardPage() {
         const data = await boardService.getBoards();
         setBoards(data);
       } catch (err: any) {
-        setError(err.response?.data?.message || "Failed to fetch boards");
+        setError(err.response?.data?.message || 'Failed to fetch boards');
       } finally {
         setLoading(false);
       }
@@ -32,6 +33,7 @@ export default function DashboardPage() {
 
   return (
     <AuthGuard>
+      <Navbar />
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4">Meus Quadros</h1>
         {loading && <p>Carregando...</p>}
