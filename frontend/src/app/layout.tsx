@@ -6,7 +6,7 @@ import {
   Geist_Mono,
 } from 'next/font/google';
 import localFont from 'next/font/local';
-import '../styles/globals.css';
+import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 
 const firaCode = Fira_Code({
