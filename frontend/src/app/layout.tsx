@@ -1,5 +1,10 @@
 import type { Metadata } from 'next';
-import { Fira_Code, Architects_Daughter } from 'next/font/google';
+import {
+  Fira_Code,
+  Architects_Daughter,
+  Geist,
+  Geist_Mono,
+} from 'next/font/google';
 import localFont from 'next/font/local';
 import '../styles/globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
@@ -26,9 +31,34 @@ const georgia = localFont({
   variable: '--font-georgia',
 });
 
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist-sans' });
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+});
+
 export const metadata: Metadata = {
-  title: 'Flowboard',
-  description: 'Criado por Ozair Couto',
+  title: 'Flowboard - Organize seu trabalho, sua vida e tudo mais',
+  description:
+    'Flowboard é a ferramenta visual que permite que sua equipe gerencie qualquer tipo de projeto, fluxo de trabalho ou monitoramento de tarefas de forma intuitiva.',
+  generator: 'v0.app',
+  icons: {
+    icon: [
+      {
+        url: '/icon-light-32x32.png',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+    apple: '/apple-icon.png',
+  },
 };
 
 export default function RootLayout({
@@ -39,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br" suppressHydrationWarning>
       <body
-        className={`${firaCode.variable} ${architectsDaughter.variable} ${georgia.variable} antialiased`}
+        className={`${firaCode.variable} ${architectsDaughter.variable} ${georgia.variable} ${geist.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
