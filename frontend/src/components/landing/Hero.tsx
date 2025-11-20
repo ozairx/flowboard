@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { FlowboardVisualization } from './FlowboardVisualization';
+import Link from 'next/link';
 
 export function Hero() {
   return (
@@ -32,8 +33,8 @@ export function Hero() {
               gerencie qualquer tipo de projeto, fluxo de trabalho ou
               monitoramento de tarefas de forma intuitiva.
             </p>
-            <Button size="lg" className="text-lg px-8 py-6 font-sans">
-              Comece agora - É grátis
+            <Button asChild size="lg" className="text-lg px-8 py-6 font-sans">
+              <Link href="/auth?form=register">Comece agora - É grátis</Link>
             </Button>
           </div>
 

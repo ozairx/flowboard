@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export function CTA() {
   return (
@@ -9,11 +10,12 @@ export function CTA() {
             Pronto para organizar seu fluxo?
           </h2>
           <Button
+            asChild
             size="lg"
             variant="secondary"
             className="text-lg px-8 py-6 font-sans"
           >
-            Comece a usar grátis
+            <Link href="/auth?form=register">Comece a usar grátis</Link>
           </Button>
         </div>
       </div>

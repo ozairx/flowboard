@@ -37,13 +37,13 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="/login"
+              href="/auth"
               className="text-foreground hover:text-primary transition-colors"
             >
               Entrar
             </Link>
-            <Button size="default" className="font-sans">
-              Cadastre-se
+            <Button asChild size="default" className="font-sans">
+              <Link href="/auth?form=register">Cadastre-se</Link>
             </Button>
           </div>
 
@@ -63,14 +63,14 @@ export function Header() {
         <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-b border-border p-4 shadow-lg animate-in slide-in-from-top-5">
           <div className="flex items-center flex-col gap-4">
             <Link
-              href="/login"
+              href="/auth"
               className="text-foreground hover:text-primary transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Entrar
             </Link>
-            <Button size="default" className="font-sans w-full">
-              Cadastre-se
+            <Button asChild size="default" className="font-sans w-full">
+              <Link href="/auth?form=register">Cadastre-se</Link>
             </Button>
           </div>
         </div>
