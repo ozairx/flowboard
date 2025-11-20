@@ -1,5 +1,5 @@
-import { Layers, MousePointer2, Users } from 'lucide-react'
-import Image from 'next/image'
+import { Layers, MousePointer2, Users } from 'lucide-react';
+import Image from 'next/image';
 
 export function Features() {
   return (
@@ -92,8 +92,8 @@ export function Features() {
                 Organização com um simples arrastar
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
-                Mova tarefas e reorganize prioridades com uma interface fluida de
-                arrastar e soltar. A produtividade nunca foi tão natural.
+                Mova tarefas e reorganize prioridades com uma interface fluida
+                de arrastar e soltar. A produtividade nunca foi tão natural.
               </p>
             </div>
           </div>
@@ -109,8 +109,8 @@ export function Features() {
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
                 Trabalhe com sua equipe simultaneamente. As atualizações são
-                sincronizadas instantaneamente para todos, mantendo todos na mesma
-                página.
+                sincronizadas instantaneamente para todos, mantendo todos na
+                mesma página.
               </p>
             </div>
             <div className="relative h-[400px] bg-muted rounded-lg overflow-hidden">
@@ -153,5 +153,5 @@ export function Features() {
         </div>
       </div>
     </section>
-  )
+  );
 }

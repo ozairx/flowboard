@@ -66,7 +66,9 @@ const HeroSection = () => {
             className="relative z-10 mt-4 flex flex-wrap items-center justify-center gap-4"
           >
             <Button asChild size="lg">
-              <Link href="/register" className='text-xl'>Comece agora - É grátis</Link>
+              <Link href="/register" className="text-xl">
+                Comece agora - É grátis
+              </Link>
             </Button>
           </motion.div>
           <motion.div

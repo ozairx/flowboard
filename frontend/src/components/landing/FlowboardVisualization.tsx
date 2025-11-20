@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { Card } from '@/components/ui/card'
+import { useEffect, useState } from 'react';
+import { Card } from '@/components/ui/card';
 
 interface TaskCard {
-  id: number
-  list: number
-  position: number
+  id: number;
+  list: number;
+  position: number;
 }
 
 export function FlowboardVisualization() {
@@ -16,24 +16,24 @@ export function FlowboardVisualization() {
     { id: 3, list: 1, position: 0 },
     { id: 4, list: 1, position: 1 },
     { id: 5, list: 2, position: 0 },
-  ])
+  ]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCards((prevCards) => {
-        const newCards = [...prevCards]
-        const randomIndex = Math.floor(Math.random() * newCards.length)
-        const card = newCards[randomIndex]
-        const newList = (card.list + 1) % 3
-        newCards[randomIndex] = { ...card, list: newList }
-        return newCards
-      })
-    }, 3000)
+        const newCards = [...prevCards];
+        const randomIndex = Math.floor(Math.random() * newCards.length);
+        const card = newCards[randomIndex];
+        const newList = (card.list + 1) % 3;
+        newCards[randomIndex] = { ...card, list: newList };
+        return newCards;
+      });
+    }, 3000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
-  const lists = ['A Fazer', 'Em Progresso', 'Concluído']
+  const lists = ['A Fazer', 'Em Progresso', 'Concluído'];
 
   return (
     <div className="relative w-full h-[600px] animate-float">
@@ -64,5 +64,5 @@ export function FlowboardVisualization() {
         ))}
       </div>
     </div>
-  )
+  );
 }

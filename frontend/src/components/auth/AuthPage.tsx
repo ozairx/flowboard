@@ -73,7 +73,7 @@ export function AuthPage() {
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm">
               <Layers className="h-6 w-6" />
             </div>
-            <Link href='/'>Flowboard</Link>
+            <Link href="/">Flowboard</Link>
           </div>
         </div>
 

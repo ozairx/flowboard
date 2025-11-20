@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { Button } from '@/components/ui/button'
-import { FlowboardVisualization } from './FlowboardVisualization'
+import { Button } from '@/components/ui/button';
+import { FlowboardVisualization } from './FlowboardVisualization';
 
 export function Hero() {
   return (
@@ -28,9 +28,9 @@ export function Hero() {
               Organize seu trabalho, sua vida e tudo mais.
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed text-pretty max-w-2xl">
-              Flowboard é a ferramenta visual que permite que sua equipe gerencie
-              qualquer tipo de projeto, fluxo de trabalho ou monitoramento de
-              tarefas de forma intuitiva.
+              Flowboard é a ferramenta visual que permite que sua equipe
+              gerencie qualquer tipo de projeto, fluxo de trabalho ou
+              monitoramento de tarefas de forma intuitiva.
             </p>
             <Button size="lg" className="text-lg px-8 py-6 font-sans">
               Comece agora - É grátis
@@ -44,5 +44,5 @@ export function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

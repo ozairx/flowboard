@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 
 export function CTA() {
   return (
@@ -18,5 +18,5 @@ export function CTA() {
         </div>
       </div>
     </section>
-  )
+  );
 }

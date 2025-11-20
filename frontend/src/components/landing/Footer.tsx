@@ -1,8 +1,8 @@
-import Link from 'next/link'
-import { Twitter, Linkedin } from 'lucide-react'
+import Link from 'next/link';
+import { Twitter, Linkedin } from 'lucide-react';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-card text-card-foreground border-t border-border">
@@ -123,5 +123,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
