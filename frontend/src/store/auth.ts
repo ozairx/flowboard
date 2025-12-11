@@ -3,14 +3,21 @@ import { create } from 'zustand';
 interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
+  isInitialized: boolean;
+  initializeAuth: () => void;
   login: (token: string) => void;
   logout: () => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  token: typeof window !== 'undefined' ? localStorage.getItem('token') : null,
-  isAuthenticated:
-    typeof window !== 'undefined' ? !!localStorage.getItem('token') : false,
+  token: null,
+  isAuthenticated: false,
+  isInitialized: false,
+  initializeAuth: () => {
+    const token =
+      typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    set({ token, isAuthenticated: !!token, isInitialized: true });
+  },
   login: (token) => {
     localStorage.setItem('token', token);
     set({ token, isAuthenticated: true });
