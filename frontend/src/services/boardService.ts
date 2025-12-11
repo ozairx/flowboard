@@ -43,6 +43,16 @@ const boardService = {
     });
     return response.data;
   },
+
+  deleteBoard: async (id: string) => {
+    const token = useAuthStore.getState().token;
+    const response = await axios.delete(`${API_URL}/boards/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  },
 };
 
 export default boardService;

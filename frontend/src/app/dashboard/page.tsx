@@ -6,6 +6,7 @@ import BoardCard from '@/components/board/BoardCard';
 import boardService from '@/services/boardService';
 import Sidebar from '@/components/layout/Sidebar';
 import { Plus, Search } from 'lucide-react';
+import { AxiosError } from 'axios';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -14,6 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
+  DialogDescription,
 } from '@/components/ui/dialog';
 
 interface Board {
@@ -29,13 +31,14 @@ export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [newBoardTitle, setNewBoardTitle] = useState('');
+  const [boardToDelete, setBoardToDelete] = useState<Board | null>(null);
 
   useEffect(() => {
     const fetchBoards = async () => {
       try {
         const data = await boardService.getBoards();
         setBoards(data);
-      } catch (err: any) {
+      } catch (err: AxiosError<{ message: string }>) {
         setError(err.response?.data?.message || 'Failed to fetch boards');
       } finally {
         setLoading(false);
@@ -61,9 +64,22 @@ export default function DashboardPage() {
       setBoards([...boards, newBoard]);
       setIsCreateModalOpen(false);
       setNewBoardTitle('');
-    } catch (error) {
+    } catch (error: AxiosError<{ message: string }>) {
       console.error('Failed to create board', error);
       alert('Falha ao criar o quadro.');
+    }
+  };
+
+  const handleDeleteConfirmation = async () => {
+    if (!boardToDelete) return;
+
+    try {
+      await boardService.deleteBoard(boardToDelete.id);
+      setBoards(boards.filter((board) => board.id !== boardToDelete.id));
+      setBoardToDelete(null);
+    } catch (error: AxiosError<{ message: string }>) {
+      console.error('Failed to delete board', error);
+      alert('Falha ao excluir o quadro.');
     }
   };
 
@@ -98,7 +114,10 @@ export default function DashboardPage() {
                   className="pl-10"
                 />
               </div>
-              <Button onClick={() => setIsCreateModalOpen(true)} className="gap-2">
+              <Button
+                onClick={() => setIsCreateModalOpen(true)}
+                className="gap-2"
+              >
                 <Plus className="w-5 h-5" />
                 Criar Novo Quadro
               </Button>
@@ -114,6 +133,7 @@ export default function DashboardPage() {
                   key={board.id}
                   board={{ ...board, cardCount: 0 }} // Mocking cardCount
                   onBoardUpdate={handleBoardUpdate}
+                  onDeleteClick={() => setBoardToDelete(board)}
                 />
               ))}
             </div>
@@ -128,6 +148,8 @@ export default function DashboardPage() {
           </div>
         </main>
       </div>
+
+      {/* Create Board Modal */}
       <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
         <DialogContent>
           <DialogHeader>
@@ -153,6 +175,30 @@ export default function DashboardPage() {
               Cancelar
             </Button>
             <Button onClick={handleCreateBoard}>Criar</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Board Confirmation Modal */}
+      <Dialog open={!!boardToDelete} onOpenChange={() => setBoardToDelete(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirmar Exclusão</DialogTitle>
+            <DialogDescription>
+              Tem certeza que deseja excluir o quadro &quot;{boardToDelete?.title}&quot;?
+              Esta ação não pode ser desfeita.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setBoardToDelete(null)}>
+              Cancelar
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleDeleteConfirmation}
+            >
+              Excluir
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -22,9 +22,10 @@ interface Board {
 interface BoardCardProps {
   board: Board;
   onBoardUpdate: (updatedBoard: Board) => void;
+  onDeleteClick: (board: Board) => void;
 }
 
-export default function BoardCard({ board, onBoardUpdate }: BoardCardProps) {
+export default function BoardCard({ board, onBoardUpdate, onDeleteClick }: BoardCardProps) {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(board.title);
@@ -89,8 +90,7 @@ export default function BoardCard({ board, onBoardUpdate }: BoardCardProps) {
 
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // TODO: Implement delete functionality
-    confirm('Tem certeza que deseja excluir este quadro?');
+    onDeleteClick(board);
   };
 
   return (
