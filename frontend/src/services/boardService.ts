@@ -23,6 +23,16 @@ const boardService = {
     });
     return response.data;
   },
+
+  updateBoard: async (id: string, data: { title: string }) => {
+    const token = useAuthStore.getState().token;
+    const response = await axios.patch(`${API_URL}/boards/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  },
 };
 
 export default boardService;

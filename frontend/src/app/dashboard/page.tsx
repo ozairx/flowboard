@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 interface Board {
   id: string;
   title: string;
+  cardCount: number;
 }
 
 export default function DashboardPage() {
@@ -34,6 +35,14 @@ export default function DashboardPage() {
 
     fetchBoards();
   }, []);
+
+  const handleBoardUpdate = (updatedBoard: Board) => {
+    setBoards(
+      boards.map((board) =>
+        board.id === updatedBoard.id ? updatedBoard : board,
+      ),
+    );
+  };
 
   const filteredBoards = boards.filter((board) =>
     board.title.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -81,6 +90,7 @@ export default function DashboardPage() {
                 <BoardCard
                   key={board.id}
                   board={{ ...board, cardCount: 0 }} // Mocking cardCount
+                  onBoardUpdate={handleBoardUpdate}
                 />
               ))}
             </div>
