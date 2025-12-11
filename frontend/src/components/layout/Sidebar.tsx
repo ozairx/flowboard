@@ -11,7 +11,7 @@ export default function Sidebar() {
         </Link>
       </div>
 
-      <nav className="flex-1">
+      <nav className="flex-1 flex flex-col justify-between pb-4">
         <ul>
           <li>
             <Link href="/dashboard">
@@ -21,6 +21,8 @@ export default function Sidebar() {
               </Button>
             </Link>
           </li>
+        </ul>
+        <ul>
           <li>
             <Link href="/settings">
               <Button variant="ghost" className="w-full justify-start gap-2">
