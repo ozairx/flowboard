@@ -8,6 +8,13 @@ import Sidebar from '@/components/layout/Sidebar';
 import { Plus, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
 
 interface Board {
   id: string;
@@ -20,6 +27,8 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [newBoardTitle, setNewBoardTitle] = useState('');
 
   useEffect(() => {
     const fetchBoards = async () => {
@@ -42,6 +51,20 @@ export default function DashboardPage() {
         board.id === updatedBoard.id ? updatedBoard : board,
       ),
     );
+  };
+
+  const handleCreateBoard = async () => {
+    if (!newBoardTitle.trim()) return;
+
+    try {
+      const newBoard = await boardService.createBoard({ title: newBoardTitle });
+      setBoards([...boards, newBoard]);
+      setIsCreateModalOpen(false);
+      setNewBoardTitle('');
+    } catch (error) {
+      console.error('Failed to create board', error);
+      alert('Falha ao criar o quadro.');
+    }
   };
 
   const filteredBoards = boards.filter((board) =>
@@ -75,7 +98,7 @@ export default function DashboardPage() {
                   className="pl-10"
                 />
               </div>
-              <Button onClick={() => {}} className="gap-2">
+              <Button onClick={() => setIsCreateModalOpen(true)} className="gap-2">
                 <Plus className="w-5 h-5" />
                 Criar Novo Quadro
               </Button>
@@ -105,6 +128,34 @@ export default function DashboardPage() {
           </div>
         </main>
       </div>
+      <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Criar Novo Quadro</DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <label htmlFor="new-board-title" className="text-sm font-medium">
+              Título do Quadro
+            </label>
+            <Input
+              id="new-board-title"
+              value={newBoardTitle}
+              onChange={(e) => setNewBoardTitle(e.target.value)}
+              placeholder="Ex: Projeto de Marketing"
+              className="mt-2"
+            />
+          </div>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsCreateModalOpen(false)}
+            >
+              Cancelar
+            </Button>
+            <Button onClick={handleCreateBoard}>Criar</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </AuthGuard>
   );
 }

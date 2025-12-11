@@ -33,6 +33,16 @@ const boardService = {
     });
     return response.data;
   },
+
+  createBoard: async (data: { title: string }) => {
+    const token = useAuthStore.getState().token;
+    const response = await axios.post(`${API_URL}/boards`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  },
 };
 
 export default boardService;
