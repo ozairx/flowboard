@@ -1,6 +1,13 @@
 'use client';
 
-import { ChevronsLeft, ChevronsRight, Home, Settings, LifeBuoy, LogOut } from 'lucide-react';
+import {
+  ChevronsLeft,
+  ChevronsRight,
+  Home,
+  Settings,
+  LifeBuoy,
+  LogOut,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { useAuthStore } from '@/store/auth';
@@ -27,17 +34,20 @@ export default function Sidebar() {
     >
       <div className="mb-8">
         <h1
-  className="text-2xl font-bold cursor-pointer"
-  onClick={() => {
-    if (router.pathname === '/dashboard') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      router.push('/dashboard');
-    }
-  }}
->
-  {isSidebarCollapsed ? 'F' : 'Flowboard'}
-</h1>
+          className={cn(
+            'text-2xl font-bold cursor-pointer px-4',
+            isSidebarCollapsed && 'px-0 text-center',
+          )}
+          onClick={() => {
+            if (router.pathname === '/dashboard') {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              router.push('/dashboard');
+            }
+          }}
+        >
+          {isSidebarCollapsed ? 'F' : 'Flowboard'}
+        </h1>
       </div>
 
       <nav className="flex-1 flex flex-col justify-between pb-4">
@@ -47,13 +57,15 @@ export default function Sidebar() {
               <Button
                 variant="ghost"
                 className={cn(
-                  "w-full justify-start gap-2",
-                          isSidebarCollapsed && "size-12 justify-center p-0",
+                  'w-full justify-start gap-2',
+                  isSidebarCollapsed && 'size-12 justify-center p-0',
                 )}
                 title="Dashboard"
               >
                 <Home style={{ width: '1.25rem', height: '1.25rem' }} />
-                {!isSidebarCollapsed && <span className="whitespace-nowrap">Dashboard</span>}
+                {!isSidebarCollapsed && (
+                  <span className="whitespace-nowrap">Dashboard</span>
+                )}
               </Button>
             </Link>
           </li>
@@ -64,13 +76,15 @@ export default function Sidebar() {
               <Button
                 variant="ghost"
                 className={cn(
-                  "w-full justify-start gap-2",
-                          isSidebarCollapsed && "size-12 justify-center p-0",
+                  'w-full justify-start gap-2',
+                  isSidebarCollapsed && 'size-12 justify-center p-0',
                 )}
                 title="Configurações"
               >
                 <Settings style={{ width: '1.25rem', height: '1.25rem' }} />
-                {!isSidebarCollapsed && <span className="whitespace-nowrap">Configurações</span>}
+                {!isSidebarCollapsed && (
+                  <span className="whitespace-nowrap">Configurações</span>
+                )}
               </Button>
             </Link>
           </li>
@@ -79,13 +93,15 @@ export default function Sidebar() {
               <Button
                 variant="ghost"
                 className={cn(
-                  "w-full justify-start gap-2",
-                          isSidebarCollapsed && "size-12 justify-center p-0",
+                  'w-full justify-start gap-2',
+                  isSidebarCollapsed && 'size-12 justify-center p-0',
                 )}
                 title="Ajuda"
               >
                 <LifeBuoy style={{ width: '1.25rem', height: '1.25rem' }} />
-                {!isSidebarCollapsed && <span className="whitespace-nowrap">Ajuda</span>}
+                {!isSidebarCollapsed && (
+                  <span className="whitespace-nowrap">Ajuda</span>
+                )}
               </Button>
             </Link>
           </li>
@@ -97,17 +113,29 @@ export default function Sidebar() {
         variant="ghost"
         size="icon-sm"
         className={cn(
-          "absolute top-10 -right-3 rounded-full bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white z-10",
-          "hidden md:flex items-center justify-center", // Show only on medium screens and up
+          'absolute top-10 -right-3 rounded-full bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white z-10',
+          'hidden md:flex items-center justify-center', // Show only on medium screens and up
         )}
         onClick={toggleSidebar}
       >
-        <ChevronsLeft className={cn("w-4 h-4 transition-transform duration-300", isSidebarCollapsed && "rotate-180")} />
+        <ChevronsLeft
+          className={cn(
+            'w-4 h-4 transition-transform duration-300',
+            isSidebarCollapsed && 'rotate-180',
+          )}
+        />
       </Button>
 
-      <div className="mt-auto"> {/* Added mt-auto to push content to bottom */}
+      <div className="mt-auto">
+        {' '}
+        {/* Added mt-auto to push content to bottom */}
         <div className="border-t border-gray-700 my-4"></div>
-        <div className={cn("flex items-center gap-3 mb-4", isSidebarCollapsed && 'justify-center')}>
+        <div
+          className={cn(
+            'flex items-center gap-3 mb-4 px-2',
+            isSidebarCollapsed && 'justify-center px-0',
+          )}
+        >
           <div className="w-8 h-8 rounded-full bg-gray-700"></div>
           {!isSidebarCollapsed && (
             <div>
@@ -119,17 +147,18 @@ export default function Sidebar() {
         <Button
           variant="ghost"
           className={cn(
-            "w-full justify-start gap-2",
-                    isSidebarCollapsed && "size-12 justify-center p-0",
+            'w-full justify-start gap-2',
+            isSidebarCollapsed && 'size-12 justify-center p-0',
           )}
           onClick={handleLogout}
           title="Sair"
         >
           <LogOut style={{ width: '1.25rem', height: '1.25rem' }} />
-          {!isSidebarCollapsed && <span className="whitespace-nowrap">Sair</span>}
+          {!isSidebarCollapsed && (
+            <span className="whitespace-nowrap">Sair</span>
+          )}
         </Button>
       </div>
     </aside>
   );
 }
-
