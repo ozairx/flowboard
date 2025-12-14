@@ -26,9 +26,18 @@ export default function Sidebar() {
       )}
     >
       <div className="mb-8">
-        <Link href="/dashboard" className={isSidebarCollapsed ? 'text-center' : ''}>
-          <h1 className="text-2xl font-bold">{isSidebarCollapsed ? 'F' : 'Flowboard'}</h1>
-        </Link>
+        <h1
+  className="text-2xl font-bold cursor-pointer"
+  onClick={() => {
+    if (router.pathname === '/dashboard') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      router.push('/dashboard');
+    }
+  }}
+>
+  {isSidebarCollapsed ? 'F' : 'Flowboard'}
+</h1>
       </div>
 
       <nav className="flex-1 flex flex-col justify-between pb-4">
