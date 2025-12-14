@@ -12,7 +12,7 @@ import {
   arrayMove,
   horizontalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import Navbar from '@/components/layout/Navbar';
+import Sidebar from '@/components/layout/Sidebar';
 
 interface Card {
   id: string;
@@ -102,28 +102,32 @@ export default function BoardDetailPage() {
 
   return (
     <AuthGuard>
-      <Navbar />
-      <DndContext onDragEnd={onDragEnd} collisionDetection={closestCorners}>
-        <div className="container mx-auto p-4">
-          {loading && <p>Carregando...</p>}
-          {error && <p className="text-red-500">{error}</p>}
-          {board && (
-            <div>
-              <h1 className="text-2xl font-bold mb-4">{board.title}</h1>
-              <SortableContext
-                items={board.lists.map((list) => list.id)}
-                strategy={horizontalListSortingStrategy}
-              >
-                <div className="flex overflow-x-auto">
-                  {board.lists.map((list) => (
-                    <List key={list.id} list={list} />
-                  ))}
+      <div className="flex h-screen bg-background">
+        <Sidebar />
+        <main className="flex-1 overflow-auto">
+          <DndContext onDragEnd={onDragEnd} collisionDetection={closestCorners}>
+            <div className="container mx-auto p-4">
+              {loading && <p>Carregando...</p>}
+              {error && <p className="text-red-500">{error}</p>}
+              {board && (
+                <div>
+                  <h1 className="text-2xl font-bold mb-4">{board.title}</h1>
+                  <SortableContext
+                    items={board.lists.map((list) => list.id)}
+                    strategy={horizontalListSortingStrategy}
+                  >
+                    <div className="flex overflow-x-auto">
+                      {board.lists.map((list) => (
+                        <List key={list.id} list={list} />
+                      ))}
+                    </div>
+                  </SortableContext>
                 </div>
-              </SortableContext>
+              )}
             </div>
-          )}
-        </div>
-      </DndContext>
+          </DndContext>
+        </main>
+      </div>
     </AuthGuard>
   );
 }
