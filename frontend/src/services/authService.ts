@@ -8,6 +8,16 @@ const authService = {
     return response.data;
   },
 
+  getUserProfile: async () => {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${API_URL}/users/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  },
+
   register: async (data: any) => {
     const response = await axios.post(`${API_URL}/auth/register`, data);
     return response.data;

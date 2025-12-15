@@ -2,7 +2,6 @@
 
 import {
   ChevronsLeft,
-  ChevronsRight,
   Home,
   Settings,
   LifeBuoy,
@@ -14,11 +13,19 @@ import { useAuthStore } from '@/store/auth';
 import { useUIStore } from '@/store/ui';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { useEffect } from 'react';
+import authService from '@/services/authService';
 
 export default function Sidebar() {
-  const logout = useAuthStore((state) => state.logout);
+  const { user, logout, setUser } = useAuthStore();
   const { isSidebarCollapsed, toggleSidebar } = useUIStore();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      authService.getUserProfile().then(setUser).catch(console.error);
+    }
+  }, [user, setUser]);
 
   const handleLogout = () => {
     logout();
@@ -130,20 +137,17 @@ export default function Sidebar() {
         {' '}
         {/* Added mt-auto to push content to bottom */}
         <div className="border-t border-gray-700 my-4"></div>
-        <div
-          className={cn(
-            'flex items-center gap-3 mb-4 px-2',
-            isSidebarCollapsed && 'justify-center px-0',
-          )}
-        >
-          <div className="w-8 h-8 rounded-full bg-gray-700"></div>
-          {!isSidebarCollapsed && (
-            <div>
-              <p className="font-semibold">Usuário</p>
-              <p className="text-sm text-gray-400">user@example.com</p>
-            </div>
-          )}
-        </div>
+<Link href="/profile">
+          <div className="flex items-center gap-3 mb-4 cursor-pointer">
+            <div className="w-10 h-10 rounded-full bg-gray-700"></div>
+            {!isSidebarCollapsed && user && (
+              <div>
+                <p className="font-semibold">{user.name}</p>
+                <p className="text-sm text-gray-400">{user.email}</p>
+              </div>
+            )}
+          </div>
+        </Link>
         <Button
           variant="ghost"
           className={cn(

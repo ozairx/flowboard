@@ -29,7 +29,7 @@ export function AuthPage() {
     setError('');
     try {
       const response = await authService.login({ email, password });
-      storeLogin(response.token);
+      storeLogin(response.token, response.user);
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Falha no login');
@@ -41,7 +41,7 @@ export function AuthPage() {
     setError('');
     try {
       const response = await authService.register({ name, email, password });
-      storeLogin(response.token);
+      storeLogin(response.token, response.user);
       router.push('/dashboard');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Falha no cadastro');

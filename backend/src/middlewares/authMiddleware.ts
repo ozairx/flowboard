@@ -19,12 +19,14 @@ export const authMiddleware = (
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
+    console.log('decoded token:', decoded);
     if (!decoded || !decoded.id) {
       return res.status(401).json({ message: "Invalid token payload" });
     }
     req.user = decoded;
     next();
   } catch (error) {
+    console.error('Error in authMiddleware:', error);
     return res.status(401).json({ message: "Invalid or expired token" });
   }
 };

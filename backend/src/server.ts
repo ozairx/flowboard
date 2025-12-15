@@ -4,6 +4,7 @@ import http from "http";
 import { Server } from "socket.io";
 import authRoutes from "./routes/authRoutes";
 import boardRoutes from "./routes/boardRoutes";
+import userRoutes from './routes/userRoutes';
 import { setupSocketIO } from "./sockets";
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.json());
 
 app.use("/auth", authRoutes);
 app.use("/boards", boardRoutes);
+app.use("/users", userRoutes);
 
 setupSocketIO(io);
 
